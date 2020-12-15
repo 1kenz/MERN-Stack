@@ -67,6 +67,40 @@ exports.updateCategory = async (req, res) => {
   }
 };
 
-exports.deleteCategory = async (req, res) => {};
+exports.deleteCategory = async (req, res) => {
+  try {
+    const deletedCategory = await Category.findOneAndUpdate(
+      { __id: req.params.id },
+      {
+        status: "deleted",
+        deletedDate: Date.now(),
+      },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json(deletedCategory);
+  } catch (error) {
+    return res.status(500).json({ errors: [{ message: error.message }] });
+  }
+};
 
-exports.getCategories = async (req, res) => {};
+exports.getCategories = async (req, res) => {
+  try {
+    const categories = await Category.find({})
+      .where("status", /[^deleted]/)
+      .select("-status");
+    res.status(200).json(categories);
+  } catch (error) {
+    return res.status(500).json({ errors: [{ message: error.message }] });
+  }
+};
+
+exports.destroyCategory = async (req, res) => {
+  try {
+    await Category.deleteOne({ __id: req.params.id });
+    res.status(200).send("Category is deleted !!!");
+  } catch (error) {
+    return res.status(500).json({ errors: [{ message: error.message }] });
+  }
+};

@@ -1,26 +1,20 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const CategoryController = require("../controllers/CategoryController");
-const validations = require("../middleware/validationMiddleware");
+const CategoryController = require('../controllers/CategoryController');
+const validations = require('../middleware/validationMiddleware');
 
-router.post(
-  "/addCategory",
-  validations.categoryValidation,
-  CategoryController.addCategory
-);
 
-router.get("/getCategory/:id", CategoryController.getCategory);
+router.post('/addCategory', validations.categoryValidation, CategoryController.addCategory);
 
-router.post(
-  "/updateCategory",
-  validations.categoryValidation,
-  CategoryController.updateCategory
-);
+router.get('/getCategory/:id', CategoryController.getCategory);
 
-router.get("/deleteCategory/:id", CategoryController.deleteCategory);
+router.post('/updateCategory', validations.categoryValidation, CategoryController.updateCategory);
 
-router.get("/destroyCategory/:id", CategoryController.destroyCategory);
+router.get('/deleteCategory/:id', CategoryController.deleteCategory);
 
-router.get("/", CategoryController.getCategories);
+router.get('/destroyCategory/:id', CategoryController.destroyCategory);
+
+router.get('/', CategoryController.getCategories);
+
 
 module.exports = router;

@@ -7,10 +7,14 @@ router.post('/addProduct', productValidation, ProductController.addProduct);
 
 router.get('/getProduct/:id', ProductController.getProduct);
 
-router.post('/updateProduct', productValidation, ProductController.updateProduct);
+router.post(
+  '/updateProduct',
+  productValidation,
+  ProductController.updateProduct
+);
 
 router.get('/deleteProduct/:id', ProductController.deleteProduct);
-
+s
 router.get('/', ProductController.getProducts);
 
 module.exports = router;

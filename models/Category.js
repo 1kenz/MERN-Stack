@@ -1,24 +1,23 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const schema = new Schema({
-    categoryName: {
-        type: String,
-        required: true,
-    },
+const schema = new Schema(
+  {
+    categoryName: { type: String, required: true },
     status: {
-        type: String,
-        default: 'created',
+      type: String,
+      default: 'created',
     },
     description: {
-        type: String,
+      type: String,
     },
     deletedAt: {
-        type: Date,
+      type: Date,
     },
-    products:[{type:Schema.Types.ObjectId, ref:'Product'}]
-
-}, {timestamps:true, collection:'Categories'});
+    products: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+  },
+  { timestamps: true, collection: 'Categories' }
+);
 
 module.exports = Category = mongoose.model('Category', schema);
 
@@ -26,7 +25,6 @@ module.exports = Category = mongoose.model('Category', schema);
     1 Product 1 Category
     1 Category n Product
 */
-
 
 /**
     - Veriler arasinda anlamsal iliski
@@ -114,4 +112,3 @@ phone
 }]
     }
 */
- 
